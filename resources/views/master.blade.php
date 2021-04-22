@@ -12,6 +12,33 @@
       height: 500px;
       padding-top: 100px;
   }
+  img.slider-img{
+    height: 400px !important;
+  }
+  .custom-product{
+    height: 600px;
+  }
+  .slider-text{
+    background-color: #35443585;
+  }
+  .trending-image{
+    height: 100px;
+  }
+  .trending-item{
+    float: left; width: 20%;
+  }
+  .trending-wrapper{
+    margin: 30px;
+  }
+  .details-image{
+    height: 200px;
+  }
+
+  .footer.panel.panel-default {
+    position: fixed;
+    bottom: 0;
+    width: 100%; margin-bottom: 0;
+}
   </style>
 </head>
 <body>

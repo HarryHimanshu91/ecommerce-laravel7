@@ -1,6 +1,3 @@
-<div class="panel panel-default">
-  <div class="panel-body">
-    Panel content
-  </div>
-  <div class="panel-footer">Panel footer</div>
+<div style="clear:both;" class="footer panel panel-default">
+  <div class="panel-footer" style="text-align:center;">© 2021 Ecommerce  Project - All Rights Reserved</div>
 </div>
