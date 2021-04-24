@@ -10,7 +10,7 @@
             <a href="/">Go Back </a>
            <h2> {{ $data['name'] }} </h2>
            <h3> Price : {{ $data['price'] }} </h3>
-           <h4> Category : {{ $data['category'] }} </h4>
+           <h4> Category : {{ $categoryName['name'] }} </h4>
            <h4> {{ $data['description'] }} </h4> 
 
            <br>

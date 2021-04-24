@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\Category;
 use App\Cart;
 use App\Order;
 use Illuminate\Support\Facades\DB;
@@ -21,7 +22,13 @@ class ProductController extends Controller
     public function details($id)
     {
         $data =  Product::find($id);
-        return view('details', compact('data'));
+        //dd($data['category']);
+        $categoryName =  Category::where('id' , $data['category'])->first();
+       // dd($categoryName);
+
+    
+
+        return view('details', compact('data','categoryName'));
     }
 
     public function search(Request $req)

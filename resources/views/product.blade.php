@@ -1,10 +1,9 @@
 @extends('master')
 @section('content')
 <div class="custom-product">
-
-
-
     <div class="row">
+
+     @if(count($products))
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
             <ol class="carousel-indicators" style="display: none;">
@@ -40,7 +39,7 @@
                 <span class="sr-only">Next</span>
             </a>
         </div>
-
+     @endif
     </div>
 
     <div class="container"style="margin-top:50px;">
