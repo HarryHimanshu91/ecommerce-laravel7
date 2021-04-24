@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
   <style>
   .custom-login{
       height: 500px;
@@ -24,15 +26,41 @@
   .trending-image{
     height: 100px;
   }
-  .trending-item{
-    float: left; width: 20%;
-  }
+  .trending-item {
+    float: left;
+    width: 20%;
+    margin-bottom: 50px;
+    margin-top: 30px;
+}
   .trending-wrapper{
     margin: 30px;
   }
   .details-image{
-    height: 200px;
+    /* height: 200px; */
+    width:100%;
   }
+
+  h4.textcentree {
+    text-align: center;
+}
+.itemProdcut {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.col-md-4.products {
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+.gobackk{
+  float: right;
+}
+  .col-md-6.rightContent {
+    padding-left: 100px;
+}
+
+ .col-md-6.leftsideImg {
+    border: 1px solid #ccc;
+}
 
   .footer.panel.panel-default {
     position: fixed;
@@ -43,7 +71,10 @@
 </head>
 <body>
  @include('header')
+
+ @include('flash-message')
  @yield('content') 
+
  @include('footer')
 </body>
 

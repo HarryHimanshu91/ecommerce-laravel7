@@ -1,10 +1,13 @@
 @extends('master')
 @section('content')
 <div class="custom-product">
+
+
+
     <div class="row">
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
-            <ol class="carousel-indicators">
+            <ol class="carousel-indicators" style="display: none;">
                 <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                 <li data-target="#myCarousel" data-slide-to="1"></li>
                 <li data-target="#myCarousel" data-slide-to="2"></li>
@@ -12,17 +15,18 @@
 
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
-              @foreach($products as $item)
-              
-                    <div class="item {{ $item['id'] == 1 ? 'active':''}}">
+                @foreach($products as $item)
+
+                <div class="item {{ $item['id'] == 1 ? 'active':''}}">
                     <a href="{{ route('detail',$item['id']) }}"> <img src="{{ $item['gallery'] }}" class="slider-img">
                         <div class="carousel-caption slider-text">
                             <h3>{{ $item['name'] }}</h3>
                             <p>{{ $item['description'] }}</p>
-                        </div> </a>
-                    </div> 
-               
-              @endforeach 
+                        </div>
+                    </a>
+                </div>
+
+                @endforeach
 
             </div>
 
@@ -35,21 +39,29 @@
                 <span class="glyphicon glyphicon-chevron-right"></span>
                 <span class="sr-only">Next</span>
             </a>
-        </div> 
+        </div>
 
+    </div>
 
-        <div class="trending-wrapper">
-            <h3> Trending Products </h3>
+    <div class="container"style="margin-top:50px;">
+        <h3> Trending Products </h3>
+        <div class="row" style="margin-bottom:100px;">
+
             @foreach($products as $item)
-              <div class="trending-item">
-              <a href="{{ route('detail',$item['id']) }}"> <img src="{{ $item['gallery'] }}" class="trending-image">
+            <div class="col-md-4 products">
+                <div class="itemProdcut">
+                <a href="{{ route('detail',$item['id']) }}"> 
+                    <center> <img src="{{ $item['gallery'] }}" class="trending-image"> </center>
                     <div class="">
-                        <h3>{{ $item['name'] }}</h3>
-                    </div> </a>
-                </div>
-              @endforeach 
+                        <h4 class="textcentree">{{ $item['name'] }}</h4>
+                    </div>
+                </a>
+</div>
+            </div>
+            @endforeach
 
         </div>
     </div>
+
 </div>
 @endsection

@@ -26,8 +26,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home </a></li>
-        <li><a href="#">Order</a></li>
+        <li><a href="{{ route('userOrder') }}">My Order</a></li>
        
       </ul>
       <form action="{{ route('search') }}" class="navbar-form navbar-left">
@@ -51,6 +50,7 @@
 
       @else
       <li><a href="/login">Login </a></li>
+      <li><a href="/register">Register </a></li>
       @endif
       
       </ul>

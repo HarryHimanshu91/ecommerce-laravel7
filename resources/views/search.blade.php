@@ -4,6 +4,7 @@
     <div class="row">
   
     <h3> Results for  Products </h3>
+    @if(count($data) >0 )
     @foreach($data as $item) 
     <div class="col-md-4">
         <div class="searched-item">
@@ -17,6 +18,9 @@
         </div> 
     </div>
     @endforeach 
+@else 
+NO record found 
+    @endif 
     </div>
     
 </div>

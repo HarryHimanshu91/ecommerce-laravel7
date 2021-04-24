@@ -1,12 +1,16 @@
 @extends('master')
 @section('content')
-<div class="container">
-    <div class="row" style="text-decoration: underline;margin-bottom: 40px;">
+<div class="container"style="margin-bottom: 100px;">
+    <div class="row" style="margin-bottom: 40px;">
   
     @if(count($products))
-    <h3>  Product List on Cart  </h3>
+         <h3>  Product List on Cart   </h3>
+         <span class="gobackk"><a href="/"> Add More shopping </a> </span>
      @else 
-     <h3>  No Product on the Cart List <h3>
+   
+     <div class="alert alert-danger" role="alert">
+         No Product on the Cart List  <span class="gobackk"><a href="/"> Go Back </a> </span>
+    </div>
     @endif 
     </div>
     @if(count($products))
@@ -19,7 +23,9 @@
 
         <div class="col-md-3"> 
             <h3>{{ $item->name }}</h3>
+            <h3> Price : {{ $item->price }}</h3>
             <h5>{{ $item->description }}</h5>
+          
         
         </div>
 
@@ -30,8 +36,12 @@
     </div>
     <hr/>
     @endforeach  
-    @endif
-    
-    
+    @endif 
+
+    @if(count($products) > 0 )
+    <div class="row" style="margin-bottom:15px;" > 
+      <a href="{{ route('order_now') }}" class="btn btn-lg btn-success">Order Now </a>
+    </div>
+    @endif 
 </div>
 @endsection
