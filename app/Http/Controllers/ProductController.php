@@ -22,12 +22,7 @@ class ProductController extends Controller
     public function details($id)
     {
         $data =  Product::find($id);
-        //dd($data['category']);
         $categoryName =  Category::where('id' , $data['category'])->first();
-       // dd($categoryName);
-
-    
-
         return view('details', compact('data','categoryName'));
     }
 
@@ -47,7 +42,6 @@ class ProductController extends Controller
             DB::table('carts')->insert($data);
             echo "<script>alert('Product has been added to cart. Go to the cart to see the product!!');
             window.location = '/';</script>";
-           //  return  redirect('/');
         } else {
             return redirect('/login');
         }
@@ -69,6 +63,7 @@ class ProductController extends Controller
             ->where('carts.user_id', $userId)
             ->select('products.*', 'carts.id as cart_id')
             ->get();
+            
         return view('cartlist', compact('products'));
     }
 

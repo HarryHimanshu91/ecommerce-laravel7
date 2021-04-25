@@ -24,9 +24,13 @@ Route::post('register', 'API\UserController@register');
 Route::get('list', 'API\ProductController@getAllProducts');
 Route::get('detail/{id}', 'API\ProductController@getProductDetail');
 Route::get('category', 'API\ProductController@getAllCategories');
-
 Route::get('category/{id}', 'API\ProductController@getCategoryProduct');
+
+
 
 Route::group(['middleware' => 'auth:api'], function () {
     Route::post('details', 'API\UserController@details');
+    Route::get('logout', 'API\UserController@logout');
+    Route::post('addToCart', 'API\ProductController@addToCart');
+    Route::get('getUserCart', 'API\ProductController@getUserCartDetails');
 });
