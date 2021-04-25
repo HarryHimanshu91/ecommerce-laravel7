@@ -21,9 +21,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('login', 'API\UserController@login');
 Route::post('register', 'API\UserController@register');
-Route::get('list', 'API\ProductController@getAllProducts');
-Route::get('detail/{id}', 'API\ProductController@getProductDetail');
-Route::get('category', 'API\ProductController@getAllCategories');
+Route::get('all_products', 'API\ProductController@getAllProducts');
+Route::get('product_detail/{id}', 'API\ProductController@getProductDetail');
+Route::get('categories', 'API\ProductController@getAllCategories');
 Route::get('category/{id}', 'API\ProductController@getCategoryProduct');
 
 

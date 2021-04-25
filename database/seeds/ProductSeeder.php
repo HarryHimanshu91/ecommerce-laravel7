@@ -16,35 +16,35 @@ class ProductSeeder extends Seeder
             
             [
                 'name'=>'Oppo mobile',
-                "price"=>"300",
+                "price"=>"15000",
                 "description"=>"A smartphone with 8gb ram and much more feature",
                 "category"=>"1",
                 "gallery"=>"https://assetscdn1.paytm.com/images/catalog/product/M/MO/MOBOPPO-A52-6-GFUTU6297453D3D253C/1592019058170_0..png"
             ],
             [
                 'name'=>'Panasonic Tv',
-                "price"=>"400",
+                "price"=>"40000",
                 "description"=>"A smart tv with much more feature",
                 "category"=>"2",
                 "gallery"=>"https://i.gadgets360cdn.com/products/televisions/large/1548154685_832_panasonic_32-inch-lcd-full-hd-tv-th-l32u20.jpg"
             ],
             [
                 'name'=>'Soni Tv',
-                "price"=>"500",
+                "price"=>"50000",
                 "description"=>"A tv with much more feature",
                 "category"=>"2",
                 "gallery"=>"https://4.imimg.com/data4/PM/KH/MY-34794816/lcd-500x500.png"
             ],
             [
                 'name'=>'LG fridge',
-                "price"=>"200",
+                "price"=>"28000",
                 "description"=>"A fridge with much more feature",
                 "category"=>"3",
                 "gallery"=>"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTFx-2-wTOcfr5at01ojZWduXEm5cZ-sRYPJA&usqp=CAU"
             ],
             [
                 'name'=>'Canon M6 Mark II Mirrorless Camera',
-                "price"=>"71,539",
+                "price"=>"70000",
                 "description"=>"Hone your photography skills and show the world your love for capturing images in all their beauty by getting the Canon M6 Mark II Mirrorless Camera.",
                 "category"=>"4",
                 "gallery"=>"https://images-na.ssl-images-amazon.com/images/I/610ksLeiVVL._AC_SX466_.jpg"
