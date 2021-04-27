@@ -5,7 +5,9 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use Exception;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Validator;
 
 
@@ -20,56 +22,95 @@ class UserController extends Controller
      * 
      * @return \Illuminate\Http\Response 
      */
+
     public function register(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'email' => 'required|email',
-            'password' => 'required',
-            'c_password' => 'required|same:password',
-        ]);
-        if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()], 401);
+
+        try {
+            $validator = Validator::make($request->all(), [
+                'name' => 'required',
+                'email' => 'required|email|unique:users',
+                'password' => 'required',
+            ]);
+
+            if ($validator->fails()) {
+                // dd($validator->errors());
+                // $errors = $validator->errors()->all();
+                // dd($errors);
+                $error = $validator->errors()->all()[0];
+                // dd($error);
+                return response()->json(['status' => 'false', 'message' => $error, 'data' => []], 422);
+            } else {
+                User::create([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'password' => Hash::make($request->password),
+                ]);
+
+                return response()->json(['status' => 'true', 'message' => 'User created successfully', 'data' => []]);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'false', 'message' => $e->getMessage(), 'data' => []], 500);
         }
-        $input = $request->all();
-        $input['password'] = bcrypt($input['password']);
-        $user = User::create($input);
-        $success['token'] =  $user->createToken('MyApp')->accessToken;
-        $success['name'] =  $user->name;
-        return response()->json(['success' => $success], $this->successStatus);
     }
 
 
+
+    /** 
+     * User Profile Details
+     * 
+     * @return \Illuminate\Http\Response 
+     */
    
 
-    /** 
-     * details api 
-     * 
-     * @return \Illuminate\Http\Response 
-     */ 
-    public function details() 
-    { 
-        $user = Auth::user(); 
-        return response()->json(['success' => $user], $this-> successStatus); 
-    } 
-
-
-    /** 
-     * login api 
-     * 
-     * @return \Illuminate\Http\Response 
-     */ 
-    public function login(){ 
-        if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){ 
-            $user = Auth::user(); 
-            $success['token'] =  $user->createToken('MyApp')-> accessToken; 
-            return response()->json(['success' => $success], $this-> successStatus); 
-
-        } 
-        else{ 
-            return response()->json(['error'=>'Unauthorised'], 401); 
-        } 
+    public function getUserProfile(Request $request)
+    {
+        try {
+            $user_id = $request->user()->id;
+            $user = User::find($user_id);
+            return response()->json(['status'=>'true','message'=>'User Profile','data'=>$user ]);
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'false', 'message' => $e->getMessage(), 'data' => []], 500);
+        }
     }
+
+    /** 
+     * User Login Api 
+     * 
+     * @return \Illuminate\Http\Response 
+     */
+
+
+    public function login(Request $request)
+    {
+        try {
+            $validator = Validator::make($request->all(), [
+                'email' => 'required|email',
+                'password' => 'required',
+            ]);
+
+            if ($validator->fails()) {
+                $error = $validator->errors()->all()[0];
+                return response()->json(['status' => 'false', 'message' => $error, 'data' => []], 422);
+            } else {
+                $user = User::where('email', $request->email)->first();
+                if ($user) {
+                    if (Hash::check($request->password, $user->password)) {
+                        $success['token'] =  $user->createToken('MyApp')->accessToken;
+                        return response()->json(['status' => 'true', 'message' => 'Logged In Successfully', 'success' => $success]);
+                    } else {
+                        return response()->json(['status' => 'false', 'message' => 'Invalid Password', 'data' => []]);
+                    }
+                } else {
+                    return response()->json(['status' => 'false', 'message' => 'Email does not exist', 'data' => []]);
+                }
+            }
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'false', 'message' => $e->getMessage(), 'data' => []], 500);
+        }
+    }
+
+
 
     /**
      * Logout user api
@@ -83,5 +124,4 @@ class UserController extends Controller
             'message' => 'Successfully logged out'
         ]);
     }
-    
 }

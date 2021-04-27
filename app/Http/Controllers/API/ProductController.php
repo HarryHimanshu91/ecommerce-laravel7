@@ -100,7 +100,7 @@ class ProductController extends Controller
         }
     }
 
-     /** 
+    /** 
      * Add to cart
      * 
      * @return \Illuminate\Http\Response 
@@ -121,14 +121,13 @@ class ProductController extends Controller
                 'data' => $cart
             ];
             return response()->json($data, 201);
-            
         } catch (\Exception $e) {
             return response()->json($e->getMessage(), 422);
         }
     }
 
 
-     /** 
+    /** 
      * Get user cart detail
      * 
      * @return \Illuminate\Http\Response 
@@ -143,13 +142,13 @@ class ProductController extends Controller
                 ->where('carts.user_id', $userId)
                 ->select('products.*', 'carts.id as cart_id', 'carts.user_id')
                 ->get();
-            $data = [
-                'success' => true,
-                'data' => $products
-            ];
-            return response()->json($data, 201);
+            if ($products) {
+                return response()->json(['status' => 'true', 'message' => 'Cart Details of User', 'data' => $products]);
+            } else {
+                return response()->json(['status' => 'false', 'message' => 'No data found for that user', 'data' =>[] ],404);
+            }
         } catch (\Exception $e) {
-            return response()->json($e->getMessage(), 422);
+            return response()->json(['status'=>'false','message'=>$e->getMessage(),'data'=>[]], 500);
         }
     }
 }
